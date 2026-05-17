@@ -39,14 +39,6 @@ export function HomeClient({ products }: HomeClientProps) {
         </div>
       </header>
 
-      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mx-4 mt-4 px-4 py-3 rounded-xl glass-light border border-crimson/20">
-        <p className="text-[11px] text-white-dim font-body tracking-widest uppercase text-center">
-          <span className="text-crimson-bright mr-2">●</span>
-          Архив редких вещей · Только оригиналы
-          <span className="text-crimson-bright ml-2">●</span>
-        </p>
-      </motion.div>
-
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }} className="px-4 mt-6 mb-4 flex items-center gap-3">
         <div className="h-px flex-1 bg-black-border" />
         <span className="text-[10px] tracking-[0.3em] text-white-faint font-body uppercase">Каталог</span>
