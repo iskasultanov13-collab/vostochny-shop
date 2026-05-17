@@ -100,8 +100,8 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
       </motion.div>
 
       <div
-        className="fixed bottom-0 left-0 right-0 px-5 pt-4 nav-blur z-50"
-        style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}
+        className="fixed bottom-0 left-0 right-0 px-5 pt-4 z-50 bg-black"
+style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}
       >
         {product.sold ? (
           <button disabled className="w-full py-4 rounded-full bg-black-border text-white-faint text-xs font-body font-semibold tracking-widest uppercase cursor-not-allowed">Продано</button>
