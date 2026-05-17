@@ -5,6 +5,10 @@ export interface Product {
   price: number
   badge: BadgeType | null
   sold: boolean
+  brand: string | null
+  size: string | null
+  color: string | null
+  condition: string | null
   created_at: string
   images?: ProductImage[]
 }
