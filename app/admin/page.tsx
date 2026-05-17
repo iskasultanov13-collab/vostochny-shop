@@ -6,7 +6,7 @@ import { getAllProductsAdmin, uploadProductImage, createProduct, deleteProduct, 
 import { formatPrice, cn } from '@/utils'
 import type { Product, BadgeType } from '@/types'
 
-const BADGES: (BadgeType | 'none')[] = ['none', 'HOT', 'ARCHIVE', 'SALE', 'ПРОДАНО']
+const BADGES: (BadgeType | 'none')[] = ['none', 'SALE', 'ARCHIVE', 'LEGIT', 'NEW', 'ПРОДАНО']
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false)
