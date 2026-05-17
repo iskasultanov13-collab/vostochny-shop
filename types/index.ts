@@ -9,7 +9,7 @@ export interface Product {
   images?: ProductImage[]
 }
 
-export type BadgeType = 'HOT' | 'ARCHIVE' | 'SALE' | 'ПРОДАНО'
+export type BadgeType = 'SALE' | 'ARCHIVE' | 'LEGIT' | 'NEW' | 'ПРОДАНО'
 
 export interface ProductImage {
   id: string
