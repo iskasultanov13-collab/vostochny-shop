@@ -19,7 +19,7 @@ export function getBadgeStyle(badge: BadgeType | null): string {
     case 'ПРОДАНО': return 'bg-white-faint text-white-dim'
     default: return ''
   }
-}'
+}
 
 
 export function getTelegramOrderLink(productTitle: string, price: number): string {
