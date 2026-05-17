@@ -20,11 +20,11 @@ export function HomeClient({ products }: { products: Product[] }) {
     return true
   })
 
-  const sectionLabel = {
+  const sectionLabel: string = ({
     all: 'Все вещи',
     legit: 'LEGIT',
     'not-legit': 'НЕ LEGIT',
-  }[section]
+  } as Record<Section, string>)[section]
 
   return (
     <div className="min-h-screen bg-black">
