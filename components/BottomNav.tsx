@@ -30,6 +30,7 @@ const navItems = [
 export function BottomNav() {
   const pathname = usePathname()
   if (pathname.startsWith('/admin')) return null
+if (pathname.startsWith('/product')) return null
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 safe-area-bottom">
