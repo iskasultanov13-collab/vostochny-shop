@@ -99,7 +99,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
         </div>
       </motion.div>
 
-      <div className="fixed bottom-0 left-0 right-0 px-5 pb-8 pt-4 nav-blur z-50">
+      <div className="fixed bottom-0 left-0 right-0 px-5 pb-12 pt-4 nav-blur z-50"
         {product.sold ? (
           <button disabled className="w-full py-4 rounded-full bg-black-border text-white-faint text-xs font-body font-semibold tracking-widest uppercase cursor-not-allowed">Продано</button>
         ) : (
