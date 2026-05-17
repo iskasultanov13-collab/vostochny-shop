@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (!message) return NextResponse.json({ ok: true })
     const chatId = message.chat.id
     const firstName = message.from?.first_name || 'друг'
-    await sendMessage(chatId, ``<b>ТЫ ПОПАЛСЯ</b> 🤢\n\nв носке х*ёвых шмоток\n\nзалетай и исправляй положение 👇``, {
+    await sendMessage(chatId, `<b>ТЫ ПОПАЛСЯ</b> 🤢\n\nв носке х*ёвых шмоток\n\nзалетай и исправляй положение 👇`, {
       inline_keyboard: [[{ text: '🏺 Открыть магазин', web_app: { url: APP_URL } }]]
     })
     return NextResponse.json({ ok: true })
