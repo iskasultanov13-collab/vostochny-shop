@@ -40,10 +40,40 @@ export async function uploadProductImage(file: File, productId: string, index: n
   return data.publicUrl
 }
 
-export async function createProduct(productData: { title: string; description: string; price: number; badge: string | null }, imageUrls: string[]): Promise<Product | null> {
-  const { data: product, error } = await supabase.from('products').insert({ ...productData, sold: false }).select().single()
+export async function createProduct(productData: { 
+  title: string
+  description: string
+  price: number
+  badge: string | null
+  brand: string | null
+  size: string | null
+  color: string | null
+  condition: string | null
+}, imageUrls: string[]): Promise<Product | null> {
+  const { data: product, error } = await supabase
+    .from('products')
+    .insert({ ...productData, sold: false })
+    .select()
+    .single()
   if (error || !product) return null
   return product
+}
+
+export async function updateProduct(id: string, productData: {
+  title: string
+  description: string
+  price: number
+  badge: string | null
+  brand: string | null
+  size: string | null
+  color: string | null
+  condition: string | null
+}): Promise<boolean> {
+  const { error } = await supabase
+    .from('products')
+    .update(productData)
+    .eq('id', id)
+  return !error
 }
 
 export async function deleteProduct(id: string): Promise<boolean> {
