@@ -19,7 +19,7 @@ const navItems = [
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke={a ? '#c41e1e' : '#4a4a45'} strokeWidth="1.5" fill={a ? '#8b1a1a' : 'none'} />
     </svg>
   )},
-  { href: '/profile', label: 'Профиль', icon: (a: boolean) => (
+  { href: '/profile?r=1', label: 'Профиль', icon: (a: boolean) => (
     <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
       <circle cx="12" cy="8" r="4" stroke={a ? '#f5f5f0' : '#4a4a45'} strokeWidth="1.5" fill={a ? 'rgba(245,245,240,0.1)' : 'none'} />
       <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke={a ? '#f5f5f0' : '#4a4a45'} strokeWidth="1.5" strokeLinecap="round" />
