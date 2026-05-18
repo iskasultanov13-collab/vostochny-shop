@@ -43,7 +43,7 @@ export function BottomNav() {
   ? pathname.includes('favorites')
   : pathname.includes('profile')
             return (
-              <<Link key={item.href} href={item.href} prefetch={false} className="flex flex-col items-center gap-1 px-6 py-2 rounded-2xl transition-colors">
+              <Link key={item.href} href={item.href} prefetch={false} className="flex flex-col items-center gap-1 px-6 py-2 rounded-2xl transition-colors">
                 <div className="relative">
                   {item.icon(isActive)}
                   {isActive && <motion.div layoutId="nav-indicator" className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />}
