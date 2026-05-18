@@ -32,7 +32,6 @@ export function BottomNav() {
   if (pathname.startsWith('/admin')) return null
 if (pathname.startsWith('/product')) return null
   
-console.log('pathname:', pathname)
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 safe-area-bottom">
       <nav className="nav-blur px-2 py-2">
