@@ -37,7 +37,7 @@ if (pathname.startsWith('/product')) return null
       <nav className="nav-blur px-2 py-2">
         <div className="flex items-center justify-around max-w-sm mx-auto">
           {navItems.map(item => {
-            const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
+            const isActive = pathname === item.href
             return (
               <Link key={item.href} href={item.href} className="flex flex-col items-center gap-1 px-6 py-2 rounded-2xl transition-colors">
                 <div className="relative">
