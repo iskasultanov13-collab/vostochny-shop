@@ -101,6 +101,9 @@ export function HomeClient({ products }: { products: Product[] }) {
                 </span>
                 <span className="text-white-faint text-xs">↗</span>
               </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
           )}
         </AnimatePresence>
       </header>
