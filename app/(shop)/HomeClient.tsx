@@ -92,7 +92,7 @@ export function HomeClient({ products }: { products: Product[] }) {
               ))}
 
               
-                href={`https://t.me/${manager}`}
+                <a href={`https://t.me/${manager}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
