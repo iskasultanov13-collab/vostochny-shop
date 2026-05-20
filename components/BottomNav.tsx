@@ -53,7 +53,8 @@ export function BottomNav() {
                     />
                   )}
                 </div>
-                <span className={cn('text-[10px] tracking-widest uppercase font-body transition-colors', isActive ? 'text-white' : 'text-white-faint')}>
+                <span className={cn('text-[10px] tracking-widest uppercase transition-colors', isActive ? 'text-white' : 'text-white-faint')}
+                  style={{fontFamily:'Outfit, sans-serif'}}>
                   {item.label}
                 </span>
               </Link>
