@@ -141,16 +141,20 @@ export default function AdminPage() {
     <div className="min-h-screen bg-black flex items-center justify-center px-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="text-4xl text-white mb-2" style={{fontFamily:'Cormorant Garamond,serif'}}>Admin</h1>
-          <p className="text-white-faint text-xs" style={{fontFamily:'Space Mono,monospace'}}>ВОСТОЧНЫЙ SHOP</p>
+          <h1 className="text-3xl text-white mb-2" style={{fontFamily:'Unbounded, sans-serif'}}>ADMIN</h1>
+          <p className="text-white-faint text-xs" style={{fontFamily:'Space Grotesk, sans-serif'}}>ВОСТОЧНЫЙ SHOP</p>
         </div>
         <form onSubmit={handleLogin} className="space-y-4">
           <motion.input type="password" placeholder="Пароль" value={password}
             onChange={e => setPassword(e.target.value)}
             animate={authError ? { x: [-6,6,-4,4,0] } : {}}
+            style={{fontFamily:'Outfit, sans-serif'}}
             className={cn('w-full bg-black-card border rounded-2xl px-5 py-4 text-white text-sm outline-none transition-colors',
               authError ? 'border-crimson-bright' : 'border-black-border focus:border-white/30')} />
-          <button type="submit" className="w-full py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase">Войти</button>
+          <button type="submit" style={{fontFamily:'Outfit, sans-serif'}}
+            className="w-full py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase">
+            Войти
+          </button>
         </form>
       </motion.div>
     </div>
@@ -161,17 +165,20 @@ export default function AdminPage() {
       <header className="glass border-b border-black-border px-5 py-4 sticky top-0 z-40">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-xl text-white" style={{fontFamily:'Cormorant Garamond,serif'}}>
-              {editingProduct ? 'Редактировать' : 'Admin Panel'}
+            <h1 className="text-lg text-white" style={{fontFamily:'Unbounded, sans-serif'}}>
+              {editingProduct ? 'РЕДАКТИРОВАТЬ' : 'ADMIN'}
             </h1>
-            <p className="text-white-faint text-[10px]" style={{fontFamily:'Space Mono,monospace'}}>ВОСТОЧНЫЙ SHOP</p>
+            <p className="text-white-faint text-[10px]" style={{fontFamily:'Space Grotesk, sans-serif'}}>ВОСТОЧНЫЙ SHOP</p>
           </div>
           <button onClick={() => { localStorage.removeItem('vs_admin'); setAuthed(false) }}
-            className="text-white-faint text-xs tracking-widest uppercase">Выйти</button>
+            className="text-white-faint text-xs tracking-widest uppercase" style={{fontFamily:'Outfit, sans-serif'}}>
+            Выйти
+          </button>
         </div>
         <div className="flex gap-2">
           {(['list','add'] as const).map(t => (
             <button key={t} onClick={() => { if(t === 'list') handleCancel(); else setTab(t) }}
+              style={{fontFamily:'Outfit, sans-serif'}}
               className={cn('px-4 py-2 rounded-full text-xs tracking-widest uppercase transition-all',
                 tab === t ? 'bg-white text-black font-semibold' : 'bg-black-card text-white-faint border border-black-border')}>
               {t === 'list' ? `Товары (${products.length})` : editingProduct ? '✏️ Редактировать' : '+ Добавить'}
@@ -185,10 +192,8 @@ export default function AdminPage() {
           {tab === 'add' ? (
             <motion.div key="add" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
               <form onSubmit={handleSubmit} className="space-y-4">
-
-                {/* Images */}
                 <div>
-                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Фото (до 6)</label>
+                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Фото (до 6)</label>
                   <div className="grid grid-cols-3 gap-2">
                     {imagePreviews.map((src, i) => (
                       <div key={i} className="relative aspect-square rounded-xl overflow-hidden bg-black-card border border-black-border">
@@ -207,68 +212,60 @@ export default function AdminPage() {
                   <input ref={fileRef} type="file" accept="image/*" multiple onChange={handleImageChange} className="hidden" />
                 </div>
 
-                {/* Title */}
-                <div>
-                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Название *</label>
-                  <input type="text" value={form.title} onChange={e => setForm({...form, title: e.target.value})}
-                    placeholder="Supreme Box Logo Hoodie" required
-                    className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
+                {[
+                  { field: 'title', label: 'Название *', placeholder: 'Supreme Box Logo Hoodie' },
+                  { field: 'brand', label: 'Бренд', placeholder: 'Supreme' },
+                ].map(({ field, label, placeholder }) => (
+                  <div key={field}>
+                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>{label}</label>
+                    <input type="text" value={form[field as keyof typeof form]} onChange={e => setForm({...form, [field]: e.target.value})}
+                      placeholder={placeholder} required={field === 'title'} style={{fontFamily:'Outfit, sans-serif'}}
+                      className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
+                  </div>
+                ))}
+
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { field: 'size', label: 'Размер', placeholder: 'L / XL / 42' },
+                    { field: 'color', label: 'Цвет', placeholder: 'Чёрный' },
+                  ].map(({ field, label, placeholder }) => (
+                    <div key={field}>
+                      <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>{label}</label>
+                      <input type="text" value={form[field as keyof typeof form]} onChange={e => setForm({...form, [field]: e.target.value})}
+                        placeholder={placeholder} style={{fontFamily:'Outfit, sans-serif'}}
+                        className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
+                    </div>
+                  ))}
                 </div>
 
-                {/* Brand + Size row */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Бренд</label>
-                    <input type="text" value={form.brand} onChange={e => setForm({...form, brand: e.target.value})}
-                      placeholder="Supreme"
-                      className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
-                  </div>
-                  <div>
-                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Размер</label>
-                    <input type="text" value={form.size} onChange={e => setForm({...form, size: e.target.value})}
-                      placeholder="L / XL / 42"
-                      className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
-                  </div>
-                </div>
-
-                {/* Color + Condition row */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Цвет</label>
-                    <input type="text" value={form.color} onChange={e => setForm({...form, color: e.target.value})}
-                      placeholder="Чёрный"
-                      className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
-                  </div>
-                  <div>
-                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Состояние</label>
+                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Состояние</label>
                     <input type="text" value={form.condition} onChange={e => setForm({...form, condition: e.target.value})}
-                      placeholder="9/10"
+                      placeholder="9/10" style={{fontFamily:'Outfit, sans-serif'}}
+                      className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
+                  </div>
+                  <div>
+                    <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Цена (₽) *</label>
+                    <input type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})}
+                      placeholder="15000" required min="0" style={{fontFamily:'Space Grotesk, sans-serif'}}
                       className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
                   </div>
                 </div>
 
-                {/* Price */}
                 <div>
-                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Цена (₽) *</label>
-                  <input type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})}
-                    placeholder="15000" required min="0"
-                    className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors" />
-                </div>
-
-                {/* Description */}
-                <div>
-                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Описание</label>
+                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Описание</label>
                   <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})}
-                    placeholder="История вещи, дополнительные детали..." rows={3}
+                    placeholder="История вещи..." rows={3} style={{fontFamily:'Outfit, sans-serif'}}
                     className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors resize-none" />
                 </div>
 
-                {/* Badge */}
                 <div>
-                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block">Бейдж</label>
+                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Бейдж</label>
                   <div className="flex flex-wrap gap-2">
                     {BADGES.map(b => (
                       <button key={b} type="button" onClick={() => setForm({...form, badge: b as BadgeType | 'none'})}
+                        style={{fontFamily:'Outfit, sans-serif'}}
                         className={cn('px-3 py-1.5 rounded-full text-xs tracking-widest uppercase border transition-all',
                           form.badge === b ? 'bg-white text-black border-white font-semibold' : 'bg-black-card text-white-faint border-black-border')}>
                         {b === 'none' ? 'Без бейджа' : b}
@@ -279,14 +276,13 @@ export default function AdminPage() {
 
                 <div className="flex gap-3 mt-6">
                   {editingProduct && (
-                    <button type="button" onClick={handleCancel}
+                    <button type="button" onClick={handleCancel} style={{fontFamily:'Outfit, sans-serif'}}
                       className="flex-1 py-4 rounded-full border border-black-border text-white-faint text-xs font-bold tracking-widest uppercase">
                       Отмена
                     </button>
                   )}
-                  <button type="submit" disabled={uploading}
-                    className={cn('flex-1 py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase',
-                      uploading && 'opacity-50 cursor-not-allowed')}>
+                  <button type="submit" disabled={uploading} style={{fontFamily:'Outfit, sans-serif'}}
+                    className={cn('flex-1 py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase', uploading && 'opacity-50 cursor-not-allowed')}>
                     {uploading ? 'Сохраняем...' : editingProduct ? 'Сохранить' : 'Опубликовать'}
                   </button>
                 </div>
@@ -303,7 +299,9 @@ export default function AdminPage() {
                   </div>
                 </div>
               )) : products.length === 0 ? (
-                <div className="text-center py-16"><p className="text-white-faint text-sm">Нет товаров</p></div>
+                <div className="text-center py-16">
+                  <p className="text-white-faint text-sm" style={{fontFamily:'Outfit, sans-serif'}}>Нет товаров</p>
+                </div>
               ) : products.map(product => (
                 <motion.div key={product.id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                   className="glass-light rounded-2xl border border-black-border overflow-hidden">
@@ -314,27 +312,27 @@ export default function AdminPage() {
                         : <div className="w-full h-full flex items-center justify-center"><span className="text-white-faint text-xs">—</span></div>}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-sm font-medium truncate">{product.title}</p>
-                      <p className="text-white-dim text-sm mt-0.5" style={{fontFamily:'Space Mono,monospace'}}>{formatPrice(product.price)}</p>
+                      <p className="text-white text-sm font-medium truncate" style={{fontFamily:'Outfit, sans-serif'}}>{product.title}</p>
+                      <p className="text-white-dim text-sm mt-0.5" style={{fontFamily:'Space Grotesk, sans-serif'}}>{formatPrice(product.price)}</p>
                       <div className="flex gap-2 mt-1 flex-wrap">
-                        {product.brand && <span className="text-[10px] text-white-faint">{product.brand}</span>}
-                        {product.size && <span className="text-[10px] text-white-faint">· {product.size}</span>}
-                        {product.badge && <span className="text-[10px] text-crimson tracking-widest">{product.badge}</span>}
+                        {product.brand && <span className="text-[10px] text-white-faint" style={{fontFamily:'Outfit, sans-serif'}}>{product.brand}</span>}
+                        {product.size && <span className="text-[10px] text-white-faint" style={{fontFamily:'Outfit, sans-serif'}}>· {product.size}</span>}
+                        {product.badge && <span className="text-[10px] text-crimson tracking-widest" style={{fontFamily:'Outfit, sans-serif'}}>{product.badge}</span>}
                       </div>
                     </div>
                   </div>
                   <div className="border-t border-black-border flex">
-                    <button onClick={() => handleEdit(product)}
+                    <button onClick={() => handleEdit(product)} style={{fontFamily:'Outfit, sans-serif'}}
                       className="flex-1 py-2.5 text-xs text-white-dim tracking-widest uppercase border-r border-black-border">
                       Изменить
                     </button>
                     {!product.sold && (
-                      <button onClick={() => markProductSold(product.id).then(loadProducts)}
+                      <button onClick={() => markProductSold(product.id).then(loadProducts)} style={{fontFamily:'Outfit, sans-serif'}}
                         className="flex-1 py-2.5 text-xs text-white-dim tracking-widest uppercase border-r border-black-border">
                         Продано
                       </button>
                     )}
-                    <button onClick={() => { if(confirm('Удалить?')) deleteProduct(product.id).then(loadProducts) }}
+                    <button onClick={() => { if(confirm('Удалить?')) deleteProduct(product.id).then(loadProducts) }} style={{fontFamily:'Outfit, sans-serif'}}
                       className="flex-1 py-2.5 text-xs text-crimson tracking-widest uppercase">
                       Удалить
                     </button>
