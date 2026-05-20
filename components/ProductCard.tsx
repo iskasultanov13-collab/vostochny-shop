@@ -16,7 +16,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const firstImage = product.images?.[0]?.image_url
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}>
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.2, delay: index * 0.03, ease: [0.22, 1, 0.36, 1] }}>
       <Link href={`/product/${product.id}`} className="block">
         <div className="product-card group">
           <div className="relative aspect-square overflow-hidden bg-black-card">
