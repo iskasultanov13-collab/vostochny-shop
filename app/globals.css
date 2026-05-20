@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-display: 'Cormorant Garamond', serif;
-  --font-body: 'Montserrat', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Source Code Pro', monospace;
   --color-bg: #0a0a0a;
   --color-card: #141414;
   --color-border: #1e1e1e;
@@ -53,5 +53,9 @@ html, body { max-width: 100vw; overflow-x: hidden; background-color: var(--color
 .btn-primary { background: var(--color-text); color: var(--color-bg); font-family: var(--font-body); font-weight: 600; letter-spacing: 0.08em; font-size: 0.8rem; text-transform: uppercase; border-radius: 100px; padding: 14px 32px; transition: all 0.2s ease; border: none; cursor: pointer; }
 .btn-primary:active { transform: scale(0.97); background: #e0e0d8; }
 
-.page-transition { animation: pageIn 0.35s ease forwards; }
-@keyframes pageIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.page-transition { animation: pageIn 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
