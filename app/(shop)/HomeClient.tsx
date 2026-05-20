@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ProductCard } from '@/components/ProductCard'
@@ -47,7 +46,6 @@ export function HomeClient({ products }: { products: Product[] }) {
                 <div className="h-px w-8 bg-crimson" />
               </div>
             </motion.div>
-
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -56,7 +54,7 @@ export function HomeClient({ products }: { products: Product[] }) {
               className="w-9 h-9 rounded-full glass-light flex items-center justify-center border border-white/10"
             >
               {menuOpen ? (
-                <span className="text-white text-xl leading-none">×</span>
+                <span className="text-white text-xl leading-none">&times;</span>
               ) : (
                 <div className="flex flex-col gap-1 items-center">
                   <div className="w-3.5 h-px bg-white" />
@@ -67,7 +65,6 @@ export function HomeClient({ products }: { products: Product[] }) {
             </motion.button>
           </div>
         </div>
-
         <AnimatePresence>
           {menuOpen && (
             <motion.div
@@ -83,31 +80,28 @@ export function HomeClient({ products }: { products: Product[] }) {
                   onClick={() => { setSection(item); setMenuOpen(false) }}
                   className="w-full px-5 py-4 flex items-center justify-between border-b border-black-border"
                 >
-                  <span className={`text-sm tracking-widest uppercase ${section === item ? 'text-white font-semibold' : 'text-white-dim'}`}
-                    style={{fontFamily:'Outfit, sans-serif'}}>
+                  <span
+                    className={`text-sm tracking-widest uppercase ${section === item ? 'text-white font-semibold' : 'text-white-dim'}`}
+                    style={{fontFamily:'Outfit, sans-serif'}}
+                  >
                     {labels[item]}
                   </span>
                   {section === item && <div className="w-1.5 h-1.5 rounded-full bg-crimson" />}
                 </button>
               ))}
-
-              
-                <button
+              <button
                 onClick={() => { window.open(`https://t.me/${manager}`, '_blank'); setMenuOpen(false) }}
                 className="w-full px-5 py-4 flex items-center justify-between"
               >
                 <span className="text-sm tracking-widest uppercase text-white-dim" style={{fontFamily:'Outfit, sans-serif'}}>
                   Сотрудничество
                 </span>
-                <span className="text-white-faint text-xs">↗</span>
+                <span className="text-white-faint text-xs">&nearr;</span>
               </button>
             </motion.div>
           )}
         </AnimatePresence>
-          )}
-        </AnimatePresence>
       </header>
-
       <motion.div
         key={section}
         initial={{ opacity: 0 }}
@@ -120,15 +114,22 @@ export function HomeClient({ products }: { products: Product[] }) {
         </span>
         <div className="h-px flex-1 bg-black-border" />
       </motion.div>
-
       <div className="px-4 pb-28">
         {filtered.length === 0 ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center py-24 gap-3">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-24 gap-3"
+          >
             <div className="w-16 h-16 rounded-full glass-light flex items-center justify-center mb-2">
-              <span className="text-2xl">🏺</span>
+              <span className="text-2xl">&#x1F3BA;</span>
             </div>
-            <p className="text-white-dim text-sm tracking-widest text-center" style={{fontFamily:'Outfit, sans-serif'}}>Скоро появятся вещи</p>
-            <p className="text-white-faint text-xs tracking-wide text-center" style={{fontFamily:'Outfit, sans-serif'}}>Архив пополняется</p>
+            <p className="text-white-dim text-sm tracking-widest text-center" style={{fontFamily:'Outfit, sans-serif'}}>
+              Скоро появятся вещи
+            </p>
+            <p className="text-white-faint text-xs tracking-wide text-center" style={{fontFamily:'Outfit, sans-serif'}}>
+              Архив пополняется
+            </p>
           </motion.div>
         ) : (
           <div className="grid grid-cols-2 gap-3">
