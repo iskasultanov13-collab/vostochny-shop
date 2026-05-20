@@ -92,18 +92,15 @@ export function HomeClient({ products }: { products: Product[] }) {
               ))}
 
               
-                <a href={`https://t.me/${manager}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMenuOpen(false)}
+                <button
+                onClick={() => { window.open(`https://t.me/${manager}`, '_blank'); setMenuOpen(false) }}
                 className="w-full px-5 py-4 flex items-center justify-between"
               >
                 <span className="text-sm tracking-widest uppercase text-white-dim" style={{fontFamily:'Outfit, sans-serif'}}>
                   Сотрудничество
                 </span>
                 <span className="text-white-faint text-xs">↗</span>
-              </a>
-            </motion.div>
+              </button>
           )}
         </AnimatePresence>
       </header>
