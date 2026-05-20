@@ -58,7 +58,6 @@ export function ProductDetailClient({ product }: { product: Product }) {
         <FavoriteButton productId={product.id} size="md" />
       </div>
 
-      {/* Image swiper */}
       <div
         className="relative w-full aspect-square bg-black-card overflow-hidden"
         onTouchStart={handleTouchStart}
@@ -78,12 +77,11 @@ export function ProductDetailClient({ product }: { product: Product }) {
             </motion.div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white-faint text-xs">НЕТ ФОТО</span>
+              <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>НЕТ ФОТО</span>
             </div>
           )}
         </AnimatePresence>
 
-        {/* Dots */}
         {images.length > 1 && (
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
             {images.map((_, i) => (
@@ -93,69 +91,70 @@ export function ProductDetailClient({ product }: { product: Product }) {
           </div>
         )}
 
-        {/* Counter */}
         {images.length > 1 && (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 glass-light rounded-full px-3 py-1">
-            <span className="text-white text-xs font-mono">{activeImg + 1}/{images.length}</span>
+            <span className="text-white text-xs" style={{fontFamily:'Space Grotesk, sans-serif'}}>{activeImg + 1}/{images.length}</span>
           </div>
         )}
       </div>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="px-5 pt-6 pb-32">
         {product.badge && <div className="mb-2"><Badge badge={product.badge} /></div>}
-        <h1 className="text-3xl text-white mb-3 leading-tight" style={{fontFamily:'Cormorant Garamond,serif'}}>{product.title}</h1>
-        <p className={cn('text-2xl font-bold mb-6', product.sold ? 'text-white-faint line-through' : 'text-white')} style={{fontFamily:'Space Mono,monospace'}}>
+        
+        <h1 className="text-2xl text-white mb-3 leading-tight" style={{fontFamily:'Unbounded, sans-serif'}}>
+          {product.title}
+        </h1>
+        
+        <p className={cn('text-2xl font-bold mb-6', product.sold ? 'text-white-faint line-through' : 'text-white')} style={{fontFamily:'Space Grotesk, sans-serif'}}>
           {formatPrice(product.price)}
         </p>
 
         <div className="h-px bg-black-border mb-6" />
 
-        {/* Details */}
         {(product.brand || product.size || product.color || product.condition) && (
           <div className="glass-light rounded-2xl p-4 mb-6">
-            <p className="text-[10px] text-white-faint tracking-widest uppercase mb-3">Детали</p>
+            <p className="text-[10px] text-white-faint tracking-widest uppercase mb-3" style={{fontFamily:'Outfit, sans-serif'}}>Детали</p>
             <div className="space-y-2">
               {product.brand && (
                 <div className="flex justify-between">
-                  <span className="text-white-faint text-xs">Бренд</span>
-                  <span className="text-white text-xs font-medium">{product.brand}</span>
+                  <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>Бренд</span>
+                  <span className="text-white text-xs font-medium" style={{fontFamily:'Space Grotesk, sans-serif'}}>{product.brand}</span>
                 </div>
               )}
               {product.size && (
                 <div className="flex justify-between">
-                  <span className="text-white-faint text-xs">Размер</span>
-                  <span className="text-white text-xs font-medium">{product.size}</span>
+                  <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>Размер</span>
+                  <span className="text-white text-xs font-medium" style={{fontFamily:'Space Grotesk, sans-serif'}}>{product.size}</span>
                 </div>
               )}
               {product.color && (
                 <div className="flex justify-between">
-                  <span className="text-white-faint text-xs">Цвет</span>
-                  <span className="text-white text-xs font-medium">{product.color}</span>
+                  <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>Цвет</span>
+                  <span className="text-white text-xs font-medium" style={{fontFamily:'Space Grotesk, sans-serif'}}>{product.color}</span>
                 </div>
               )}
               {product.condition && (
                 <div className="flex justify-between">
-                  <span className="text-white-faint text-xs">Состояние</span>
-                  <span className="text-white text-xs font-medium">{product.condition}</span>
+                  <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>Состояние</span>
+                  <span className="text-white text-xs font-medium" style={{fontFamily:'Space Grotesk, sans-serif'}}>{product.condition}</span>
                 </div>
               )}
               <div className="flex justify-between">
-                <span className="text-white-faint text-xs">Доставка</span>
-                <span className="text-white text-xs font-medium">По договорённости</span>
+                <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>Доставка</span>
+                <span className="text-white text-xs font-medium" style={{fontFamily:'Space Grotesk, sans-serif'}}>По договорённости</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-white-faint text-xs">Оплата</span>
-                <span className="text-white text-xs font-medium">СПБ / USDT</span>
+                <span className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>Оплата</span>
+                <span className="text-white text-xs font-medium" style={{fontFamily:'Space Grotesk, sans-serif'}}>СПБ / USDT</span>
               </div>
             </div>
           </div>
         )}
 
-        {/* Description */}
         {product.description && (
           <div className="mb-6">
-            <p className="text-[10px] text-white-faint tracking-widest uppercase mb-3">Описание</p>
-            <p className="text-white-dim text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
+            <p className="text-[10px] text-white-faint tracking-widest uppercase mb-3" style={{fontFamily:'Outfit, sans-serif'}}>Описание</p>
+            <p className="text-white-dim text-sm leading-relaxed whitespace-pre-line" style={{fontFamily:'Outfit, sans-serif'}}>{product.description}</p>
           </div>
         )}
       </motion.div>
@@ -165,12 +164,12 @@ export function ProductDetailClient({ product }: { product: Product }) {
         style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}
       >
         {product.sold ? (
-          <button disabled className="w-full py-4 rounded-full bg-black-border text-white-faint text-xs font-semibold tracking-widest uppercase cursor-not-allowed">
+          <button disabled className="w-full py-4 rounded-full bg-black-border text-white-faint text-xs font-semibold tracking-widest uppercase cursor-not-allowed" style={{fontFamily:'Outfit, sans-serif'}}>
             Продано
           </button>
         ) : (
           <motion.button whileTap={{ scale: 0.97 }} onClick={handleOrder}
-            className="w-full py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase crimson-glow">
+            className="w-full py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase crimson-glow" style={{fontFamily:'Outfit, sans-serif'}}>
             Написать · Заказать
           </motion.button>
         )}
