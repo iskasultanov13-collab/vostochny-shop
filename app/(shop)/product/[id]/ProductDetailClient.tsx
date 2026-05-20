@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge'
 import { FavoriteButton } from '@/components/ui/FavoriteButton'
 import { formatPrice, getTelegramOrderLink, cn } from '@/utils'
 import { useTelegram } from '@/hooks/useTelegram'
+import toast from 'react-hot-toast'
 import type { Product } from '@/types'
 
 export function ProductDetailClient({ product }: { product: Product }) {
