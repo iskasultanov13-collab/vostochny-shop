@@ -21,7 +21,10 @@ export function ProductDetailClient({ product }: { product: Product }) {
 
   const handleOrder = () => {
     haptic.success()
-    window.open(getTelegramOrderLink(product.title, product.price), '_blank')
+    toast('Открываем чат с продавцом...', { icon: '💬' })
+    setTimeout(() => {
+      window.open(getTelegramOrderLink(product.title, product.price), '_blank')
+    }, 500)
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
