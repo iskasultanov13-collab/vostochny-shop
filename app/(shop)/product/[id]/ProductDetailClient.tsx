@@ -159,14 +159,24 @@ export function ProductDetailClient({ product }: { product: Product }) {
         )}
       </motion.div>
 
-      <div
+     <div
         className="fixed bottom-0 left-0 right-0 px-5 pt-4 nav-blur z-50"
         style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}
       >
         {product.sold ? (
-          <button disabled className="w-full py-4 rounded-full bg-black-border text-white-faint text-xs font-semibold tracking-widest uppercase cursor-not-allowed" style={{fontFamily:'Outfit, sans-serif'}}>
-            Продано
-          </button>
+          <div className="space-y-3">
+            <p className="text-white-faint text-xs text-center tracking-wide" style={{fontFamily:'Outfit, sans-serif'}}>
+              Если хочешь новый завоз этой шмотки, пиши менеджеру ↓
+            </p>
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={handleOrder}
+              className="w-full py-4 rounded-full bg-black-border border border-white/10 text-white-dim text-xs font-bold tracking-widest uppercase"
+              style={{fontFamily:'Outfit, sans-serif'}}
+            >
+              Написать менеджеру
+            </motion.button>
+          </div>
         ) : (
           <motion.button whileTap={{ scale: 0.97 }} onClick={handleOrder}
             className="w-full py-4 rounded-full bg-white text-black text-xs font-bold tracking-widest uppercase crimson-glow" style={{fontFamily:'Outfit, sans-serif'}}>
