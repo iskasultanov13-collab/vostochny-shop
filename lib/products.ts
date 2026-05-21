@@ -49,6 +49,7 @@ export async function createProduct(productData: {
   description: string
   price: number
   badge: string | null
+  badge2: string | null
   brand: string | null
   size: string | null
   color: string | null
@@ -68,6 +69,7 @@ export async function updateProduct(id: string, productData: {
   description: string
   price: number
   badge: string | null
+  badge2: string | null
   brand: string | null
   size: string | null
   color: string | null
