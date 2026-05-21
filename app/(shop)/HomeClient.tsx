@@ -38,12 +38,12 @@ export function HomeClient({ products }: { products: Product[] }) {
               <h1 className="text-xl text-white leading-none tracking-tight" style={{fontFamily:'Unbounded, sans-serif'}}>
                 ВОСТОЧНЫЙ
               </h1>
-              <div className="flex items-center gap-2 mt-0.5">
-                <div className="h-px w-8 bg-crimson" />
-                <span className="text-[10px] tracking-[0.3em] text-white-dim uppercase" style={{fontFamily:'Outfit, sans-serif'}}>
+              <div className="flex items-center justify-center gap-2 mt-1">
+                <div className="h-px w-6 bg-crimson" />
+                <span className="text-[9px] tracking-[0.4em] text-white-dim uppercase" style={{fontFamily:'Outfit, sans-serif'}}>
                   SHOP
                 </span>
-                <div className="h-px w-8 bg-crimson" />
+                <div className="h-px w-6 bg-crimson" />
               </div>
             </motion.div>
             <motion.button
