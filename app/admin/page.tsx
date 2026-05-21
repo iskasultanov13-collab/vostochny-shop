@@ -12,6 +12,7 @@ const BADGES: (BadgeType | 'none')[] = ['none', 'SALE', 'ARCHIVE', 'LEGIT', 'NEW
 const emptyForm = {
   title: '', description: '', price: '',
   badge: 'none' as BadgeType | 'none',
+  badge2: 'none' as BadgeType | 'none',
   brand: '', size: '', color: '', condition: '',
 }
 
@@ -80,6 +81,7 @@ export default function AdminPage() {
       description: product.description || '',
       price: String(product.price),
       badge: product.badge || 'none',
+      badge2: product.badge2 || 'none',
       brand: product.brand || '',
       size: product.size || '',
       color: product.color || '',
@@ -108,10 +110,11 @@ export default function AdminPage() {
     e.preventDefault()
     if (!form.title || !form.price) return
     setUploading(true)
-    const productData = {
+  const productData = {
       title: form.title, description: form.description,
       price: parseFloat(form.price),
       badge: form.badge === 'none' ? null : form.badge as BadgeType,
+      badge2: form.badge2 === 'none' ? null : form.badge2 as BadgeType,
       brand: form.brand || null, size: form.size || null,
       color: form.color || null, condition: form.condition || null,
     }
@@ -298,14 +301,28 @@ export default function AdminPage() {
                     className="w-full bg-black-card border border-black-border rounded-2xl px-4 py-3 text-white text-sm outline-none focus:border-white/30 transition-colors resize-none" />
                 </div>
 
-                <div>
-                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Бейдж</label>
+               <div>
+                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Бейдж 1</label>
                   <div className="flex flex-wrap gap-2">
                     {BADGES.map(b => (
                       <button key={b} type="button" onClick={() => setForm({...form, badge: b as BadgeType | 'none'})}
                         style={{fontFamily:'Outfit, sans-serif'}}
                         className={cn('px-3 py-1.5 rounded-full text-xs tracking-widest uppercase border transition-all',
                           form.badge === b ? 'bg-white text-black border-white font-semibold' : 'bg-black-card text-white-faint border-black-border')}>
+                        {b === 'none' ? 'Без бейджа' : b}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-[10px] text-white-faint tracking-widest uppercase mb-2 block" style={{fontFamily:'Outfit, sans-serif'}}>Бейдж 2</label>
+                  <div className="flex flex-wrap gap-2">
+                    {BADGES.map(b => (
+                      <button key={b} type="button" onClick={() => setForm({...form, badge2: b as BadgeType | 'none'})}
+                        style={{fontFamily:'Outfit, sans-serif'}}
+                        className={cn('px-3 py-1.5 rounded-full text-xs tracking-widest uppercase border transition-all',
+                          form.badge2 === b ? 'bg-white text-black border-white font-semibold' : 'bg-black-card text-white-faint border-black-border')}>
                         {b === 'none' ? 'Без бейджа' : b}
                       </button>
                     ))}
