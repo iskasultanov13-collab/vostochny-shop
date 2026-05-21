@@ -4,6 +4,7 @@ export interface Product {
   description: string | null
   price: number
   badge: BadgeType | null
+  badge2: BadgeType | null
   sold: boolean
   brand: string | null
   size: string | null
