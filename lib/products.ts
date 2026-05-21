@@ -2,7 +2,11 @@ import { supabase } from './supabase'
 import type { Product, Favorite } from '@/types'
 
 export async function getProducts(): Promise<Product[]> {
-  const { data } = await supabase.from('products').select('*, images:product_images(*)').eq('sold', false).order('created_at', { ascending: false })
+  const { data } = await supabase
+    .from('products')
+    .select('*, images:product_images(*)')
+    .order('sold', { ascending: true })
+    .order('created_at', { ascending: false })
   return data || []
 }
 
