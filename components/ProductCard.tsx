@@ -19,7 +19,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.2, delay: index * 0.03, ease: [0.22, 1, 0.36, 1] }}>
       <Link href={`/product/${product.id}`} className="block">
-        <div className="product-card group">
+        <div className={`product-card group ${product.sold ? 'opacity-60' : ''}`}>
           <div className="relative aspect-square overflow-hidden bg-black-card">
             {firstImage ? (
               <>
@@ -32,8 +32,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               </div>
             )}
             {product.sold && (
-              <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                <span className="text-white-dim text-xs font-semibold tracking-widest uppercase font-body">Продано</span>
+              <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-2">
+                <span className="text-white-dim text-xs font-semibold tracking-widest uppercase" style={{fontFamily:'Outfit, sans-serif'}}>ПРОДАНО</span>
               </div>
             )}
             {product.badge && !product.sold && <div className="absolute top-2 left-2"><Badge badge={product.badge} /></div>}
