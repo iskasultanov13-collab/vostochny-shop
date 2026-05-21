@@ -12,11 +12,11 @@ export function formatPrice(price: number): string {
 
 export function getBadgeStyle(badge: BadgeType | null): string {
   switch (badge) {
-    case 'SALE': return 'bg-white text-black'
-    case 'ARCHIVE': return 'bg-white/10 text-white border border-white/20'
-    case 'LEGIT': return 'bg-crimson text-white'
-    case 'NEW': return 'bg-white text-black border border-black/20'
-    case 'ПРОДАНО': return 'bg-white-faint text-white-dim'
+    case 'SALE': return 'bg-red-600/70 text-white border border-red-500/40'
+    case 'ARCHIVE': return 'bg-yellow-600/70 text-yellow-100 border border-yellow-500/40'
+    case 'LEGIT': return 'bg-green-700/70 text-green-100 border border-green-600/40'
+    case 'NEW': return 'bg-blue-700/70 text-blue-100 border border-blue-600/40'
+    case 'ПРОДАНО': return 'bg-black/60 text-white-faint border border-white/10'
     default: return ''
   }
 }
