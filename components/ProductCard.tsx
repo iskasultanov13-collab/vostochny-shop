@@ -1,12 +1,10 @@
 'use client'
-
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Badge } from '@/components/ui/Badge'
 import { FavoriteButton } from '@/components/ui/FavoriteButton'
-import { formatPrice, cn } from '@/utils'
+import { formatPrice, cn, getBadgeStyle } from '@/utils'
 import type { Product } from '@/types'
 
 interface ProductCardProps { product: Product; index?: number }
@@ -24,26 +22,62 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             {firstImage ? (
               <>
                 {!imgLoaded && <div className="absolute inset-0 skeleton" />}
-                <Image src={firstImage} alt={product.title} fill className={`object-cover transition-transform duration-500 group-hover:scale-105 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImgLoaded(true)} sizes="(max-width: 768px) 50vw, 33vw" />
+                <Image
+                  src={firstImage}
+                  alt={product.title}
+                  fill
+                  className={`object-cover transition-transform duration-500 group-hover:scale-105 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  onLoad={() => setImgLoaded(true)}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
               </>
             ) : (
               <div className="absolute inset-0 flex items-center justify-center bg-black-card">
-                <span className="text-white-faint text-xs font-mono tracking-widest">NO IMG</span>
+                <span className="text-white-faint text-xs tracking-widest" style={{fontFamily:'Outfit, sans-serif'}}>NO IMG</span>
               </div>
             )}
+
+            {/* ПРОДАНО overlay */}
             {product.sold && (
-              <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-2">
-                <span className="text-white-dim text-xs font-semibold tracking-widest uppercase" style={{fontFamily:'Outfit, sans-serif'}}>ПРОДАНО</span>
+              <div className="absolute inset-0 bg-black/75 flex flex-col items-center justify-center gap-2">
+                <span className="text-white text-sm font-bold tracking-widest uppercase" style={{fontFamily:'Unbounded, sans-serif'}}>
+                  ПРОДАНО
+                </span>
               </div>
             )}
-            {product.badge && !product.sold && <div className="absolute top-2 left-2"><Badge badge={product.badge} /></div>}
+
+            {/* Badges */}
+            {!product.sold && (
+              <div className="absolute top-2 left-2 flex flex-col gap-1">
+                {product.badge && (
+                  <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge))}
+                    style={{fontFamily:'Outfit, sans-serif'}}>
+                    {product.badge}
+                  </span>
+                )}
+                {product.badge2 && (
+                  <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge2))}
+                    style={{fontFamily:'Outfit, sans-serif'}}>
+                    {product.badge2}
+                  </span>
+                )}
+              </div>
+            )}
+
+            {/* Favorite */}
             <div className="absolute top-2 right-2" onClick={e => e.preventDefault()}>
               <FavoriteButton productId={product.id} />
             </div>
           </div>
+
           <div className="p-3">
-            <h3 className="text-white text-sm font-medium leading-tight truncate font-body tracking-wide mb-1">{product.title}</h3>
-            <p className={`text-sm font-semibold tracking-wide font-mono ${product.sold ? 'text-white-faint line-through' : 'text-white'}`}>{formatPrice(product.price)}</p>
+            <h3 className="text-white text-sm font-medium leading-tight truncate tracking-wide mb-1" style={{fontFamily:'Outfit, sans-serif'}}>
+              {product.title}
+            </h3>
+            <p className={cn('text-sm font-semibold tracking-wide', product.sold ? 'text-white-faint line-through' : 'text-white')}
+              style={{fontFamily:'Space Grotesk, sans-serif'}}>
+              {formatPrice(product.price)}
+            </p>
           </div>
         </div>
       </Link>
