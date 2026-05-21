@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Badge } from '@/components/ui/Badge'
 import { FavoriteButton } from '@/components/ui/FavoriteButton'
-import { formatPrice, getTelegramOrderLink, cn } from '@/utils'
+import { formatPrice, getTelegramOrderLink, cn, getBadgeStyle } from '@/utils'
 import { useTelegram } from '@/hooks/useTelegram'
 import toast from 'react-hot-toast'
 import type { Product } from '@/types'
@@ -99,7 +99,20 @@ export function ProductDetailClient({ product }: { product: Product }) {
       </div>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="px-5 pt-6 pb-32">
-        {product.badge && <div className="mb-2"><Badge badge={product.badge} /></div>}
+        <div className="flex gap-2 mb-2">
+          {product.badge && (
+            <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge))}
+              style={{fontFamily:'Outfit, sans-serif'}}>
+              {product.badge}
+            </span>
+          )}
+          {product.badge2 && (
+            <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge2))}
+              style={{fontFamily:'Outfit, sans-serif'}}>
+              {product.badge2}
+            </span>
+          )}
+        </div>
         
         <h1 className="text-2xl text-white mb-3 leading-tight" style={{fontFamily:'Unbounded, sans-serif'}}>
           {product.title}
