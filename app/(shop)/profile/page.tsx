@@ -81,7 +81,7 @@ export default function ProfilePage() {
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-crimson/10 flex items-center justify-center">
-              <span className="text-base">✈️</span>
+              <i className="fa-brands fa-telegram text-white text-lg" />
             </div>
             <span className="text-white text-sm" style={{fontFamily:'Outfit, sans-serif'}}>Написать продавцу</span>
           </div>
