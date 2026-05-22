@@ -47,20 +47,24 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             )}
 
             {/* Badges */}
-            {!product.sold && (
-              <div className="absolute top-2 left-2 flex flex-col gap-1">
-                {product.badge && (
-                  <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge))}
-                    style={{fontFamily:'Outfit, sans-serif'}}>
-                    {product.badge}
-                  </span>
-                )}
-                {product.badge2 && (
-                  <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge2))}
-                    style={{fontFamily:'Outfit, sans-serif'}}>
-                    {product.badge2}
-                  </span>
-                )}
+           {product.badge && (() => {
+  const s = getBadgeStyle(product.badge)
+  return (
+    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
+      style={{...s.style, fontFamily:'Outfit, sans-serif'}}>
+      {product.badge}
+    </span>
+  )
+})()}
+{product.badge2 && (() => {
+  const s = getBadgeStyle(product.badge2)
+  return (
+    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
+      style={{...s.style, fontFamily:'Outfit, sans-serif'}}>
+      {product.badge2}
+    </span>
+  )
+})()}
               </div>
             )}
 
