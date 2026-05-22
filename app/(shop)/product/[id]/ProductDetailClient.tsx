@@ -100,18 +100,24 @@ export function ProductDetailClient({ product }: { product: Product }) {
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="px-5 pt-6 pb-32">
         <div className="flex gap-2 mb-2">
-          {product.badge && (
-            <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge))}
-              style={{fontFamily:'Outfit, sans-serif'}}>
-              {product.badge}
-            </span>
-          )}
-          {product.badge2 && (
-            <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', getBadgeStyle(product.badge2))}
-              style={{fontFamily:'Outfit, sans-serif'}}>
-              {product.badge2}
-            </span>
-          )}
+{product.badge && (() => {
+  const s = getBadgeStyle(product.badge)
+  return (
+    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
+      style={{...s.style, fontFamily:'Outfit, sans-serif'}}>
+      {product.badge}
+    </span>
+  )
+})()}
+{product.badge2 && (() => {
+  const s = getBadgeStyle(product.badge2)
+  return (
+    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
+      style={{...s.style, fontFamily:'Outfit, sans-serif'}}>
+      {product.badge2}
+    </span>
+  )
+})()}
         </div>
         
         <h1 className="text-2xl text-white mb-3 leading-tight" style={{fontFamily:'Unbounded, sans-serif'}}>
