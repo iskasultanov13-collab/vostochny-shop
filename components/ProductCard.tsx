@@ -13,6 +13,18 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [imgLoaded, setImgLoaded] = useState(false)
   const firstImage = product.images?.[0]?.image_url
 
+  const BadgeEl = ({ badge }: { badge: NonNullable<typeof product.badge> }) => {
+    const s = getBadgeStyle(badge)
+    return (
+      <span
+        className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
+        style={{...s.style, fontFamily:'Outfit, sans-serif'}}
+      >
+        {badge}
+      </span>
+    )
+  }
+
   return (
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.2, delay: index * 0.03, ease: [0.22, 1, 0.36, 1] }}>
@@ -37,7 +49,6 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               </div>
             )}
 
-            {/* ПРОДАНО overlay */}
             {product.sold && (
               <div className="absolute inset-0 bg-black/75 flex flex-col items-center justify-center gap-2">
                 <span className="text-white text-sm font-bold tracking-widest uppercase" style={{fontFamily:'Unbounded, sans-serif'}}>
@@ -46,29 +57,13 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               </div>
             )}
 
-            {/* Badges */}
-           {product.badge && (() => {
-  const s = getBadgeStyle(product.badge)
-  return (
-    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
-      style={{...s.style, fontFamily:'Outfit, sans-serif'}}>
-      {product.badge}
-    </span>
-  )
-})()}
-{product.badge2 && (() => {
-  const s = getBadgeStyle(product.badge2)
-  return (
-    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase', s.className)}
-      style={{...s.style, fontFamily:'Outfit, sans-serif'}}>
-      {product.badge2}
-    </span>
-  )
-})()}
+            {!product.sold && (product.badge || product.badge2) && (
+              <div className="absolute top-2 left-2 flex flex-col gap-1">
+                {product.badge && <BadgeEl badge={product.badge} />}
+                {product.badge2 && <BadgeEl badge={product.badge2} />}
               </div>
             )}
 
-            {/* Favorite */}
             <div className="absolute top-2 right-2" onClick={e => e.preventDefault()}>
               <FavoriteButton productId={product.id} />
             </div>
