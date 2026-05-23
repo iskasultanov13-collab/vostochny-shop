@@ -34,38 +34,40 @@ export default function ProfilePage() {
   }, [telegramUser])
 
   return (
-    <div className="min-h-screen bg-black page-transition">
+    <div className="min-h-screen page-transition" style={{background:'var(--color-bg)'}}>
       <div className="keffiyeh-diamond px-5 pt-8 pb-8">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}
           className="flex flex-col items-center">
           <div
-            className="w-24 h-24 rounded-full overflow-hidden mb-4 flex items-center justify-center border border-crimson/30"
-            style={{background: 'linear-gradient(135deg, #1a0a0a 0%, #2a0a0a 50%, #141414 100%)'}}>
+            className="w-24 h-24 rounded-full overflow-hidden mb-4 flex items-center justify-center"
+            style={{background: 'linear-gradient(135deg, #1a0a0a 0%, #2a0a0a 50%, #141414 100%)', border:'1px solid rgba(139,26,26,0.3)'}}>
             <span className="text-white text-3xl font-bold" style={{fontFamily:'Unbounded, sans-serif'}}>
               {telegramUser?.first_name?.[0]?.toUpperCase() || '?'}
             </span>
           </div>
-          <h1 className="text-2xl text-white mb-1 text-center" style={{fontFamily:'Unbounded, sans-serif'}}>
+          <h1 className="text-2xl mb-1 text-center" style={{color:'var(--color-text)', fontFamily:'Unbounded, sans-serif'}}>
             {telegramUser?.first_name} {telegramUser?.last_name}
           </h1>
           {telegramUser?.username && (
-            <p className="text-white-faint text-xs" style={{fontFamily:'Space Grotesk, sans-serif'}}>@{telegramUser.username}</p>
+            <p className="text-xs" style={{color:'var(--color-faint)', fontFamily:'Space Grotesk, sans-serif'}}>
+              @{telegramUser.username}
+            </p>
           )}
         </motion.div>
       </div>
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-        className="mx-4 -mt-4 glass rounded-2xl border border-black-border p-5">
-        <div className="grid grid-cols-2 divide-x divide-black-border">
-          <div className="flex flex-col items-center pr-4">
-            <span className="text-4xl text-white" style={{fontFamily:'Unbounded, sans-serif'}}>{favorites.length}</span>
-            <span className="text-[10px] text-white-faint tracking-widest uppercase mt-1" style={{fontFamily:'Outfit, sans-serif'}}>Избранных</span>
+        className="mx-4 -mt-4 glass rounded-2xl p-5" style={{border:'1px solid var(--color-border)'}}>
+        <div className="grid grid-cols-2" style={{borderRight:'none'}}>
+          <div className="flex flex-col items-center pr-4" style={{borderRight:'1px solid var(--color-border)'}}>
+            <span className="text-4xl" style={{color:'var(--color-text)', fontFamily:'Unbounded, sans-serif'}}>{favorites.length}</span>
+            <span className="text-[10px] tracking-widest uppercase mt-1" style={{color:'var(--color-faint)', fontFamily:'Outfit, sans-serif'}}>Избранных</span>
           </div>
           <div className="flex flex-col items-center pl-4">
-            <span className="text-4xl text-white" style={{fontFamily:'Unbounded, sans-serif'}}>
+            <span className="text-4xl" style={{color:'var(--color-text)', fontFamily:'Unbounded, sans-serif'}}>
               {daysWithUs !== null ? daysWithUs : '...'}
             </span>
-            <span className="text-[10px] text-white-faint tracking-widest uppercase mt-1" style={{fontFamily:'Outfit, sans-serif'}}>Дней с нами</span>
+            <span className="text-[10px] tracking-widest uppercase mt-1" style={{color:'var(--color-faint)', fontFamily:'Outfit, sans-serif'}}>Дней с нами</span>
           </div>
         </div>
       </motion.div>
@@ -75,42 +77,44 @@ export default function ProfilePage() {
 
         <button
           onClick={() => window.open(`https://t.me/${manager}`, '_blank')}
-          className="w-full glass-light rounded-2xl p-4 flex items-center justify-between border border-white/5 active:opacity-70 transition-opacity"
+          className="w-full glass-light rounded-2xl p-4 flex items-center justify-between active:opacity-70 transition-opacity"
+          style={{border:'1px solid rgba(var(--glass-border),0.08)'}}
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-crimson/10 flex items-center justify-center">
-              <i className="fa-brands fa-telegram text-white text-lg" />
+            <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{background:'rgba(139,26,26,0.1)'}}>
+              <i className="fa-brands fa-telegram text-lg" style={{color:'var(--color-crimson)'}} />
             </div>
-            <span className="text-white text-sm" style={{fontFamily:'Outfit, sans-serif'}}>Написать продавцу</span>
+            <span className="text-sm" style={{color:'var(--color-text)', fontFamily:'Outfit, sans-serif'}}>Написать продавцу</span>
           </div>
-          <span className="text-white-faint">›</span>
+          <span style={{color:'var(--color-faint)'}}>›</span>
         </button>
 
         <button
           onClick={toggleTheme}
-          className="w-full glass-light rounded-2xl p-4 flex items-center justify-between border border-white/5 active:opacity-70 transition-opacity"
+          className="w-full glass-light rounded-2xl p-4 flex items-center justify-between active:opacity-70 transition-opacity"
+          style={{border:'1px solid rgba(var(--glass-border),0.08)'}}
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-crimson/10 flex items-center justify-center">
-              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'} text-crimson text-base`} />
+            <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{background:'rgba(139,26,26,0.1)'}}>
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'} text-base`} style={{color:'var(--color-crimson)'}} />
             </div>
             <div className="text-left">
-              <p className="text-white text-sm" style={{fontFamily:'Outfit, sans-serif'}}>
+              <p className="text-sm" style={{color:'var(--color-text)', fontFamily:'Outfit, sans-serif'}}>
                 {theme === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
               </p>
-              <p className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>
+              <p className="text-xs" style={{color:'var(--color-faint)', fontFamily:'Outfit, sans-serif'}}>
                 Сейчас: {theme === 'dark' ? 'тёмная' : 'светлая'}
               </p>
             </div>
           </div>
-          <i className="fa-solid fa-chevron-right text-white-faint text-xs" />
+          <i className="fa-solid fa-chevron-right text-xs" style={{color:'var(--color-faint)'}} />
         </button>
 
       </motion.div>
 
       <div className="flex flex-col items-center mt-12 mb-28 gap-1">
-        <span className="text-white-faint text-lg" style={{fontFamily:'Unbounded, sans-serif'}}>ВОСТОЧНЫЙ SHOP</span>
-        <p className="text-white-faint text-[10px]" style={{fontFamily:'Space Grotesk, sans-serif'}}>ARCHIVE · LUXURY · DRIP</p>
+        <span className="text-lg" style={{color:'var(--color-faint)', fontFamily:'Unbounded, sans-serif'}}>ВОСТОЧНЫЙ SHOP</span>
+        <p className="text-[10px]" style={{color:'var(--color-faint)', fontFamily:'Space Grotesk, sans-serif'}}>ARCHIVE · LUXURY · DRIP</p>
       </div>
     </div>
   )
