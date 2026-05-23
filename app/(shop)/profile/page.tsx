@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from '@/hooks/useTheme'
 import { useEffect, useState } from 'react'
 import { useAppStore } from '@/lib/store'
 import { supabase } from '@/lib/supabase'
@@ -9,6 +10,7 @@ export default function ProfilePage() {
   const { telegramUser, favorites } = useAppStore()
   const [daysWithUs, setDaysWithUs] = useState<number | null>(null)
   const manager = process.env.NEXT_PUBLIC_MANAGER_TELEGRAM || 'manager'
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     if (!telegramUser) return
@@ -88,6 +90,26 @@ export default function ProfilePage() {
           <span className="text-white-faint">›</span>
         </button>
       </motion.div>
+
+      <button
+          onClick={toggleTheme}
+          className="w-full glass-light rounded-2xl p-4 flex items-center justify-between border border-white/5 active:opacity-70 transition-opacity"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-crimson/10 flex items-center justify-center">
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'} text-crimson`} />
+            </div>
+            <div>
+              <span className="text-white text-sm" style={{fontFamily:'Outfit, sans-serif'}}>
+                {theme === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
+              </span>
+              <p className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>
+                Сейчас: {theme === 'dark' ? 'тёмная' : 'светлая'}
+              </p>
+            </div>
+          </div>
+          <i className="fa-solid fa-chevron-right text-white-faint text-xs" />
+        </button>
 
       <div className="flex flex-col items-center mt-12 mb-28 gap-1">
         <span className="text-white-faint text-lg" style={{fontFamily:'Unbounded, sans-serif'}}>ВОСТОЧНЫЙ SHOP</span>
