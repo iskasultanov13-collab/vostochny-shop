@@ -12,11 +12,11 @@ export function formatPrice(price: number): string {
 
 export function getBadgeStyle(badge: BadgeType | null): { className: string; style: React.CSSProperties } {
   switch (badge) {
-    case 'SALE': return { className: 'text-white border', style: { background: 'rgba(220,38,38,0.75)', borderColor: 'rgba(220,38,38,0.4)' } }
-    case 'ARCHIVE': return { className: 'text-yellow-100 border', style: { background: 'rgba(161,98,7,0.75)', borderColor: 'rgba(161,98,7,0.4)' } }
-    case 'LEGIT': return { className: 'text-green-100 border', style: { background: 'rgba(21,128,61,0.75)', borderColor: 'rgba(21,128,61,0.4)' } }
-    case 'NEW': return { className: 'text-blue-100 border', style: { background: 'rgba(29,78,216,0.75)', borderColor: 'rgba(29,78,216,0.4)' } }
-    case 'ПРОДАНО': return { className: 'text-white/50 border', style: { background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)' } }
+    case 'SALE': return { className: 'text-white', style: { background: 'rgba(220,38,38,0.75)', border: '1px solid rgba(220,38,38,0.5)' } }
+    case 'ARCHIVE': return { className: 'text-yellow-100', style: { background: 'rgba(161,98,7,0.75)', border: '1px solid rgba(161,98,7,0.5)' } }
+    case 'LEGIT': return { className: 'text-green-100', style: { background: 'rgba(21,128,61,0.75)', border: '1px solid rgba(21,128,61,0.5)' } }
+    case 'NEW': return { className: 'text-blue-100', style: { background: 'rgba(29,78,216,0.75)', border: '1px solid rgba(29,78,216,0.5)' } }
+    case 'ПРОДАНО': return { className: 'text-white/50', style: { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' } }
     default: return { className: '', style: {} }
   }
 }
