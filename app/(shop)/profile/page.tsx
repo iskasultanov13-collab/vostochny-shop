@@ -14,27 +14,22 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!telegramUser) return
-
     const registerAndFetch = async () => {
       const userId = String(telegramUser.id)
-
       await supabase.from('users').upsert(
         { telegram_user_id: userId },
         { onConflict: 'telegram_user_id', ignoreDuplicates: true }
       )
-
       const { data } = await supabase
         .from('users')
         .select('first_seen')
         .eq('telegram_user_id', userId)
         .single()
-
       if (data?.first_seen) {
         const days = Math.floor((Date.now() - new Date(data.first_seen).getTime()) / (1000 * 60 * 60 * 24))
         setDaysWithUs(days)
       }
     }
-
     registerAndFetch()
   }, [telegramUser])
 
@@ -77,6 +72,7 @@ export default function ProfilePage() {
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
         className="px-4 mt-6 space-y-2">
+
         <button
           onClick={() => window.open(`https://t.me/${manager}`, '_blank')}
           className="w-full glass-light rounded-2xl p-4 flex items-center justify-between border border-white/5 active:opacity-70 transition-opacity"
@@ -89,20 +85,19 @@ export default function ProfilePage() {
           </div>
           <span className="text-white-faint">›</span>
         </button>
-      </motion.div>
 
-      <button
+        <button
           onClick={toggleTheme}
           className="w-full glass-light rounded-2xl p-4 flex items-center justify-between border border-white/5 active:opacity-70 transition-opacity"
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-crimson/10 flex items-center justify-center">
-              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'} text-crimson`} />
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'} text-crimson text-base`} />
             </div>
-            <div>
-              <span className="text-white text-sm" style={{fontFamily:'Outfit, sans-serif'}}>
+            <div className="text-left">
+              <p className="text-white text-sm" style={{fontFamily:'Outfit, sans-serif'}}>
                 {theme === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
-              </span>
+              </p>
               <p className="text-white-faint text-xs" style={{fontFamily:'Outfit, sans-serif'}}>
                 Сейчас: {theme === 'dark' ? 'тёмная' : 'светлая'}
               </p>
@@ -110,6 +105,8 @@ export default function ProfilePage() {
           </div>
           <i className="fa-solid fa-chevron-right text-white-faint text-xs" />
         </button>
+
+      </motion.div>
 
       <div className="flex flex-col items-center mt-12 mb-28 gap-1">
         <span className="text-white-faint text-lg" style={{fontFamily:'Unbounded, sans-serif'}}>ВОСТОЧНЫЙ SHOP</span>
