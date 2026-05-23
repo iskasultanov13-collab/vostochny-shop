@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/utils'
 
 const navItems = [
-  { href: '/', label: 'Каталог', icon: 'fa-solid fa-grid-2' },
+  { href: '/', label: 'Каталог', icon: 'fa-solid fa-border-all' },
   { href: '/favorites', label: 'Избранное', icon: 'fa-solid fa-heart' },
   { href: '/profile', label: 'Профиль', icon: 'fa-solid fa-user' },
 ]
@@ -26,19 +26,23 @@ export function BottomNav() {
               ? pathname.includes('favorites')
               : pathname.includes('profile')
             return (
-              <Link key={item.href} href={item.href} prefetch={false} className="flex flex-col items-center gap-1 px-6 py-2 rounded-2xl transition-colors">
+              <Link key={item.href} href={item.href} prefetch={false}
+                className="flex flex-col items-center gap-1 px-6 py-2 rounded-2xl transition-colors">
                 <div className="relative">
-                  <i className={`${item.icon} text-lg transition-colors ${isActive ? item.label === 'Избранное' ? 'text-crimson-bright' : 'text-white' : 'text-white-faint'}`} />
+                  <i className={`${item.icon} text-lg transition-colors`}
+                    style={{color: isActive ? item.label === 'Избранное' ? 'var(--color-crimson-bright)' : 'var(--color-text)' : 'var(--color-faint)'}} />
                   {isActive && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white"
+                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                      style={{background:'var(--color-text)'}}
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
                 </div>
-                <span className={cn('text-[10px] tracking-widest uppercase transition-colors', isActive ? 'text-white' : 'text-white-faint')}
-                  style={{fontFamily:'Outfit, sans-serif'}}>
+                <span
+                  className="text-[10px] tracking-widest uppercase transition-colors"
+                  style={{color: isActive ? 'var(--color-text)' : 'var(--color-faint)', fontFamily:'Outfit, sans-serif'}}>
                   {item.label}
                 </span>
               </Link>
