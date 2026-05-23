@@ -30,7 +30,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       transition={{ duration: 0.2, delay: index * 0.03, ease: [0.22, 1, 0.36, 1] }}>
       <Link href={`/product/${product.id}`} className="block">
         <div className={`product-card group ${product.sold ? 'opacity-60' : ''}`}>
-          <div className="relative aspect-square overflow-hidden bg-black-card">
+          <div className="relative aspect-square overflow-hidden" style={{background:'var(--color-card)'}}>
             {firstImage ? (
               <>
                 {!imgLoaded && <div className="absolute inset-0 skeleton" />}
@@ -44,8 +44,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 />
               </>
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-black-card">
-                <span className="text-white-faint text-xs tracking-widest" style={{fontFamily:'Outfit, sans-serif'}}>NO IMG</span>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-xs tracking-widest" style={{color:'var(--color-faint)', fontFamily:'Outfit, sans-serif'}}>NO IMG</span>
               </div>
             )}
 
@@ -70,11 +70,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
 
           <div className="p-3">
-            <h3 className="text-white text-xs font-medium leading-tight truncate mb-1" style={{fontFamily:'Unbounded, sans-serif'}}>
+            <h3 className="text-xs font-medium leading-tight truncate mb-1"
+              style={{color:'var(--color-text)', fontFamily:'Unbounded, sans-serif'}}>
               {product.title}
             </h3>
-            <p className={cn('text-sm font-semibold tracking-wide', product.sold ? 'text-white-faint line-through' : 'text-white')}
-              style={{fontFamily:'Space Grotesk, sans-serif'}}>
+            <p className={cn('text-sm font-semibold tracking-wide')}
+              style={{color: product.sold ? 'var(--color-faint)' : 'var(--color-text)', textDecoration: product.sold ? 'line-through' : 'none', fontFamily:'Space Grotesk, sans-serif'}}>
               {formatPrice(product.price)}
             </p>
           </div>
