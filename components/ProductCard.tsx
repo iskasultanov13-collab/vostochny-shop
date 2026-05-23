@@ -70,7 +70,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
 
           <div className="p-3">
-            <h3 className="text-white text-sm font-medium leading-tight truncate tracking-wide mb-1" style={{fontFamily:'Outfit, sans-serif'}}>
+            <h3 className="text-white text-xs font-medium leading-tight truncate mb-1" style={{fontFamily:'Unbounded, sans-serif'}}>
               {product.title}
             </h3>
             <p className={cn('text-sm font-semibold tracking-wide', product.sold ? 'text-white-faint line-through' : 'text-white')}
